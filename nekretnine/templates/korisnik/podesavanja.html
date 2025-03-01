@@ -1,0 +1,146 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <title>www.tojeto.rs</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <style>
+            .nav-tabs .nav-link.active {
+                background-color: #ffc107; /* Bootstrap's warning color */
+                color: #212529; /* Dark text color for contrast */
+            }
+            .card .card-oglas {
+                z-index: 1;
+                pointer-events: auto;
+            }
+            .yellow-500 {
+                color: #ffc107;
+            }
+            /* Position the toast container in the top-right corner, for example */
+            .toast-container {
+                position: fixed;
+                top: 4rem;
+                right: 1rem;
+                z-index: 9999;
+            }
+        </style>
+
+    </head>
+    <body>
+        
+        <!-- Include the navigation -->
+        {% include 'nav.html' %}
+                    
+        <main class="pt-3">
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="mb-3">
+                            <small><a class="text-muted" href="{% url 'home' %}"><i class="bi bi-house"></i></a> / <a class="text-muted"">{{ user.first_name }} {{ user.last_name }}</a> / <a class="text-muted" href="#">Podešavanja</a></small>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark rounded-3">
+                                <a class="nav-link ms-2 d-md-none text-light">Navigacija</a>
+                                <button class="navbar-toggler text-light me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="text-light bi bi-list"></span>
+                                </button>
+                                
+                                <div class="collapse navbar-collapse" id="navbarColor01">
+                                    <ul class="navbar-nav mr-auto text-warning">
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'postavi_oglas' %}">Novi oglas</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'moji_oglasi' %}">Moji oglasi</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'sacuvani_oglasi' %}">Sačuvani oglasi</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'sacuvane_pretrage' %}">Sačuvane pretrage</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link" href="{% url 'podesavanja' %}">Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <hr>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <div class="col-lg-3 col-md-3 p-2">
+                                    <img src="{% static 'img/profile_photo.jpg' %}" class="img-fluid" alt="Profilna slika">
+                                </div>
+                            
+                                <div class="col-lg-9 col-md-9">
+                                    <form class="form-floating"  action="#" method="post">
+                                        {% csrf_token %}
+                                        <div class="form-floating p-1">
+                                            <input type="text" class="form-control" id="floatingInputValue" value="{{ request.user.user_type.name }}" readonly>
+                                            <label for="floatingInputValue">Korisnik</label>
+                                        </div>
+                                        <div class="form-floating p-1">
+                                            <input type="text" class="form-control" id="floatingInputValue" value="{{ user.first_name }} {{ user.last_name }}" readonly>
+                                            <label for="floatingInputValue">Ime i Prezime</label>
+                                        </div>
+                                        <div class="form-floating p-1">
+                                            <input type="email" class="form-control" id="floatingInputValue" value="{{ user.email }}" readonly>
+                                            <label for="floatingInputValue">Email adresa</label>
+                                        </div>
+                                        <div class="form-floating p-1">
+                                            <input type="text" class="form-control" id="floatingInputValue" value="{{ user.phone_number }}" readonly>
+                                            <label for="floatingInputValue">Broj Telefona</label>
+                                        </div>
+                                        <div class="form-floating p-1">
+                                            <div class="clearfix">
+                                                <button type="button" class="btn btn-sm btn-primary float-start p-2 me-1" data-bs-toggle="modal" data-bs-target="#izmeniProfil">Izmeni</button>
+                                                <button type="submit" name="verifikuj-nalog" class="btn btn-sm btn-secondary float-start p-2">Verifikuj email</button>
+                                                
+                                                <button 
+                                                    type="submit" 
+                                                    name="obrisi-nalog" 
+                                                    class="btn btn-sm btn-danger float-end p-2"
+                                                    onclick="return confirm('Da li ste sigurni da želite obrisati nalog?');"
+                                                    >
+                                                    Obriši nalog
+                                                </button>
+                                            </div>
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-4">
+                            
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        
+            <!-- Include the modals -->
+            {% include 'modals.html' %}
+            <!-- Include the toasts -->
+            {% include 'toast.html' %}
+        
+        </main>
+
+        <!-- Include the footer -->
+        {% include 'footer.html' %}
+
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

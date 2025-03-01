@@ -1,0 +1,57 @@
+{% load static %}
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const passwordInput = document.getElementById("passwordInput");
+        const confirmPasswordInput = document.getElementById("confirmPasswordInput");
+        const submitButton = document.getElementById("registrationSuccess");
+
+        function checkPasswords() {
+            // If both fields have some value
+            if (passwordInput.value && confirmPasswordInput.value) {
+                // Compare them
+                if (passwordInput.value === confirmPasswordInput.value) {
+                    // MATCH => mark confirmPassword as valid
+                    confirmPasswordInput.classList.remove("is-invalid");
+                    confirmPasswordInput.classList.add("is-valid");
+                    submitButton.disabled = false;
+                } else {
+                    // NO MATCH => mark confirmPassword as invalid
+                    confirmPasswordInput.classList.remove("is-valid");
+                    confirmPasswordInput.classList.add("is-invalid");
+                    submitButton.disabled = true;
+                }
+            } else {
+                // If either field is empty, remove validation classes
+                confirmPasswordInput.classList.remove("is-valid", "is-invalid");
+                submitButton.disabled = true;
+            }
+        }
+
+        // Listen for typing (input event) in both fields
+        passwordInput.addEventListener("input", checkPasswords);
+        confirmPasswordInput.addEventListener("input", checkPasswords);
+
+        // Initially disable the button (it’s already disabled in HTML, but
+        // we also ensure consistent UI state here, if needed)
+        submitButton.disabled = true;
+    });
+
+
+    // Initialize all toasts
+    document.addEventListener('DOMContentLoaded', function () {
+        var toastElList = [].slice.call(document.querySelectorAll('.toast'))
+        var toastList = toastElList.map(function (toastEl) {
+            return new bootstrap.Toast(toastEl)
+        })
+        toastList.forEach(toast => toast.show())
+    });
+</script>
+<footer class="text-muted py-5">
+    <div class="container">
+        <p class="float-end mb-1">
+            <a href="#"><i class="bi bi-arrow-up-square fs-3 text-dark"></i></a>
+        </p>
+        <p class="mb-1">Album example is &copy; Bootstrap, but please download and customize it for yourself!</p>
+        <p class="mb-0">New to Bootstrap? <a href="/">Visit the homepage</a> or read our <a href="/docs/5.2/getting-started/introduction/">getting started guide</a>.</p>
+    </div>
+</footer>

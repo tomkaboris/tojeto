@@ -1,0 +1,46 @@
+{% load static %}
+<header class="fixed-top">
+    <div class="collapse bg-dark" id="navbarHeader">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-8 col-md-7 py-4">
+                    <h4 class="text-white">Zdravo</h4>
+                    <p class="text-white">Verujem da si u potrazi za nekretninom, zato mislim da si na pravom mestu. Naš sajt ti omogućava brzu i laku pretragu idealne nekretnine koja te zanima. Da, znamo da postoje i drugi sajtovi koji nude istu uslugu, ali pogledaj naš sadržaj i proceni sam. Za nas... to je to a ti proceni sam.</p>
+                </div>
+                <div class="col-sm-4 offset-md-1 py-4">
+                    <h4 class="text-white">Kontakt</h4>
+                    <ul class="list-unstyled">
+                        <li><a href="#" class="text-white"><i class="bi bi-facebook"></i> Prati nas na Facebook</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-instagram"></i> Prati nas na Instagramu</a></li>
+                        <li><a href="#" class="text-white"><i class="bi bi-send"></i> Pisite nam</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="navbar navbar-dark bg-dark shadow-sm">
+        <div class="container float-end">
+            <div>
+                <a class="btn btn-sm btn-outline-warning" href="{% url 'home' %}"><i class="bi bi-house"></i></a>
+                <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="collapse" data-bs-target="#navbarHeader" aria-controls="navbarHeader" aria-expanded="false" aria-label="Toggle navigation">
+                    <img src="{% static 'img/tojeto.png' %}" style="height: 18px;" alt="...">
+                </button>
+            </div>
+            <div>
+                {% if user.is_authenticated %}
+                    <!-- Show navigation for logged-in users -->
+                    <a href="{% url 'postavi_oglas' %}" type="button" class="btn btn-sm btn-warning">
+                        Postavi oglas
+                    </a>
+                    <a href="{% url 'logout' %}" type="button" class="btn btn-sm btn-outline-warning">
+                        Odjavi se
+                    </a>
+                {% else %}
+                    <button type="button" class="btn btn-sm btn-outline-warning" data-bs-toggle="modal" data-bs-target="#postaviOglas">
+                        Postavi oglas / Prijavi se
+                    </button>
+                {% endif %}
+            </div>                    
+        </div>
+    </div>
+</header>

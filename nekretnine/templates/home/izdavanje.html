@@ -1,0 +1,267 @@
+{% load static %}
+<form class="form-floating" action="#">
+    <div class="form-floating p-1">
+        <input type="text" class="form-control" id="floatingInputValue">
+        <label for="floatingInputValue"><i class="bi bi-pin-map"></i> Upišite lokaciju</label>
+    </div>
+    <div class="row g-0">
+        <div class="col-md">
+            <div class="form-floating p-1">
+                <select class="form-select" id="tipNekretnine" aria-label="Floating label select example">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <label for="tipNekretnine">Tip nekretnine</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating p-1">
+                <select class="form-select" id="brojSoba" aria-label="Floating label select example">
+                    <option value="1">One</option>
+                    <option value="2">Two</option>
+                    <option value="3">Three</option>
+                </select>
+                <label for="brojSoba">Broj soba</label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating p-1">
+                <input type="text" class="form-control" id="cenaDo">
+                <label for="cenaOd"><small>Cena do €</small></label>
+            </div>
+        </div>
+        <div class="col-md">
+            <div class="form-floating p-1">
+                <input type="text" class="form-control" id="kvadrataDo">
+                <label for="kvadrataDo"><small>Kvadratura od m²</small></label>
+            </div>
+        </div>
+    </div>
+    <div class="d-grid gap-2 pt-1">
+        <button class="btn btn-secondary" type="button" data-bs-toggle="collapse" data-bs-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample">
+            Detaljna pretraga
+        </button>
+        <div class="collapse pt-1" id="collapseExample">
+            <div class="row g-0">
+                <div class="col-md">
+                    <div class="form-floating p-1">
+                        <input type="text" class="form-control" id="cenaOd">
+                        <label for="cenaOd"><small>Cena od €</small></label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating p-1">
+                        <input type="text" class="form-control" id="cenaDo">
+                        <label for="cenaOd"><small>Cena do €</small></label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating p-1">
+                        <input type="text" class="form-control" id="cenaOd">
+                        <label for="cenaOd"><small>Kvadratura od m²</small></label>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="form-floating p-1">
+                        <input type="text" class="form-control" id="kvadrataDo">
+                        <label for="kvadrataDo"><small>Kvadratura do m²</small></label>
+                    </div>
+                </div>
+            </div>
+            <div class="row g-0">
+                <div class="col-md">
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Oglašavač</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Vlasnik</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Agencija</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Firma</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Investitor</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Grejanje</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Klima</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Alokatori</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Etažno</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Centralno</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Toplotna pumpa</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Struja</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Gas</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Mermerni radijatori</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Norveški radijatori</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Čvrsto gorivo</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">TA peć</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Kaljeva peć</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Podno</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Ostalo</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Ima terasu</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Ima podrum</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Ima tavan</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Oglas ima video</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Mogućnost video pokazivanja</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Samo sa slikom</label>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md">
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Stanje</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Uobičajno</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Novo</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">U izgradnji</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Renovirano</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Potrebno renoviranje</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Parking mesto</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Parking</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Garaža</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Opremljenost</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Namešteno</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Prazno</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Polunamešteno</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Infrastruktura</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Ima lift</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Alarm</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Video nadzor</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Prilaz za invalide</label>
+                        </div>
+                    </div>
+                    <div class="card card-body m-1">
+                        <small class="text-start text-muted mb-3">Spratnost</small>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Nije prizemlje</label>
+                        </div>
+                        <div class="form-check form-switch text-start">
+                            <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                            <label class="form-check-label" for="flexSwitchCheckDefault">Nije poslednji sprat</label>
+                        </div>
+                        <div class="input-group mt-3">
+                            <input type="text" placeholder="Sprat od" aria-label="Sprat od" class="form-control">
+                            <input type="text" placeholder="Sprat do" aria-label="Sprat do" class="form-control">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="btn-group" role="group" aria-label="Basic outlined example">
+            <button type="button" class="btn btn-warning text-dark" type="submit">Pretraži</button>
+        </div>
+    </div>
+</form>

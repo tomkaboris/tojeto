@@ -1,0 +1,524 @@
+{% load static %}
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <meta name="description" content="">
+        <meta name="author" content="Mark Otto, Jacob Thornton, and Bootstrap contributors">
+        <meta name="generator" content="Hugo 0.104.2">
+        <title>www.tojeto.rs</title>
+
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons/font/bootstrap-icons.css">
+
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+
+        <!-- Include stylesheet -->
+        <link href="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.snow.css" rel="stylesheet" />
+
+        <!-- 
+        Old Bootstrap JS 
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+        <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.6.0/css/bootstrap.min.css" crossorigin="anonymous">
+        -->
+
+        <!-- Format Images loader CSS -->
+        <link rel="stylesheet" href="{% static 'css/jquery.imagesloader.css' %}">
+
+        <!-- jQuery -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js" crossorigin="anonymous"></script>
+
+        <!-- Font awesome -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.13.1/js/all.min.js" crossorigin="anonymous"></script>
+
+        <!-- Images loader -->
+        <script src="{% static 'js/jquery.imagesloader-1.0.1.js' %}"></script>
+
+        <style>
+            /* Custom height for the editor container */
+            #editor {
+                height: 200px; /* Adjust height as needed */
+                border: 1px solid #ccc; /* Optional: Add a border for better visibility */
+                padding: 10px; /* Optional: Add padding */
+                overflow-y: auto; /* Enable scrolling if content overflows */
+            }
+            .yellow-500 {
+                color: #ffc107;
+            }
+            /* Position the toast container in the top-right corner, for example */
+            .toast-container {
+                position: fixed;
+                top: 4rem;
+                right: 1rem;
+                z-index: 9999;
+            }
+        </style>
+
+    </head>
+    <body>
+        
+        <!-- Include the navigation -->
+        {% include 'nav.html' %}
+                    
+        <main class="pt-3">
+            <div class="py-5">
+                <div class="container">
+                    <div class="row">
+                        <div class="mb-3">
+                            <small><a class="text-muted" href="{% url 'home' %}"><i class="bi bi-house"></i></a> / <a class="text-muted">{{ user.first_name }} {{ user.last_name }}</a> / <a class="text-muted" href="#">Novi oglas</a></small>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <nav class="navbar navbar-expand-lg navbar-dark bg-dark text-warning rounded-3">
+                                <a class="nav-link ms-2 d-md-none text-light">Navigacija</a>
+                                <button class="navbar-toggler text-light me-4" type="button" data-bs-toggle="collapse" data-bs-target="#navbarColor01" aria-controls="navbarColor01" aria-expanded="false" aria-label="Toggle navigation">
+                                    <span class="text-light bi bi-list"></span>
+                                </button>
+                                
+                                <div class="collapse navbar-collapse" id="navbarColor01">
+                                    <ul class="navbar-nav mr-auto text-warning">
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link" href="{% url 'postavi_oglas' %}">Novi oglas</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'moji_oglasi' %}">Moji oglasi</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'sacuvani_oglasi' %}">Sačuvani oglasi</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'sacuvane_pretrage' %}">Sačuvane pretrage</a>
+                                        </li>
+                                        <li class="nav-item ms-2">
+                                            <a class="nav-link yellow-500" href="{% url 'podesavanja' %}">Profil</a>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </nav>
+                            <hr>
+                        </div>
+                        <div class="col-lg-12 col-md-12">
+                            <div class="row">
+                                <form class="form-floating"  action="#" method="post">
+                                    <div class="form-floating p-1">
+                                        <input type="text" class="form-control" id="floatingInputValue">
+                                        <label for="floatingInputValue"><i class="bi bi-pin-map"></i> Upišite adresu</label>
+                                    </div>
+                                    <div class="row g-0">
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <input type="text" class="form-control" id="opstina">
+                                                <label for="opstina"><small>Opština (mesto)</small></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <select class="form-select" id="tipNekretnine" aria-label="Floating label select example">
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                                <label for="tipNekretnine">Tip nekretnine</label>
+                                            </div>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-0">
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <select class="form-select" id="uknjizenost" aria-label="Floating label select example">
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                                <label for="uknjizenost">Uknjiženost</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <select class="form-select" id="brojSoba" aria-label="Floating label select example">
+                                                    <option value="1">One</option>
+                                                    <option value="2">Two</option>
+                                                    <option value="3">Three</option>
+                                                </select>
+                                                <label for="brojSoba">Broj soba</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <input type="text" class="form-control" id="cenaOd">
+                                                <label for="cenaOd"><small>Cena €</small></label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md">
+                                            <div class="form-floating p-1">
+                                                <input type="text" class="form-control" id="kvadrataDo">
+                                                <label for="kvadrataDo"><small>Kvadratura m²</small></label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    <div class="d-grid gap-2 pt-1">
+                                        
+                                        <div class="row g-0">
+                                            <div class="col-md">
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Grejanje</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Klima</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Alokatori</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Etažno</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Centralno</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Toplotna pumpa</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Struja</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Gas</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Mermerni radijatori</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Norveški radijatori</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Čvrsto gorivo</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">TA peć</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Kaljeva peć</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Podno</label>
+                                                    </div>
+                                                </div>
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Ostalo</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Ima terasu</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Ima podrum</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Ima tavan</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Oglas ima video</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Mogućnost video pokazivanja</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Samo sa slikom</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <div class="col-md">
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Stanje</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Uobičajno</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Novo</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">U izgradnji</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Renovirano</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Potrebno renoviranje</label>
+                                                    </div>
+                                                </div>
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Parking mesto</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Parking</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Garaža</label>
+                                                    </div>
+                                                </div>
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Opremljenost</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Namešteno</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Prazno</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Polunamešteno</label>
+                                                    </div>
+                                                </div>
+                                                <div class="card card-body m-1">
+                                                    <small class="text-start text-muted mb-3">Infrastruktura</small>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Ima lift</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Alarm</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Video nadzor</label>
+                                                    </div>
+                                                    <div class="form-check form-switch text-start">
+                                                        <input class="form-check-input" type="checkbox" id="flexSwitchCheckDefault">
+                                                        <label class="form-check-label" for="flexSwitchCheckDefault">Prilaz za invalide</label>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <!--Image Upload-->
+                                        <div class="d-grid gap-2 pt-1">
+                                        
+                                            <div class="row g-0">
+                                                <div class="col-md">
+                                                    <div class="card card-body m-1">
+                                                        
+                                                        <!--Image container -->
+                                                        <div class="row"
+                                                        data-type="imagesloader"
+                                                        data-errorformat="Accepted file formats"
+                                                        data-errorsize="Maximum size accepted"
+                                                        data-errorduplicate="File already loaded"
+                                                        data-errormaxfiles="Maximum number of images you can upload"
+                                                        data-errorminfiles="Minimum number of images to upload"
+                                                        data-modifyimagetext="Modify immage">
+
+                                                        <!-- Progress bar -->
+                                                        <div class="col-12 order-1 mt-2">
+                                                            <div data-type="progress" class="progress" style="height: 25px; display:none;">
+                                                                <div data-type="progressBar" class="progress-bar progress-bar-striped progress-bar-animated bg-success" role="progressbar" style="width: 100%;">Load in progress...</div>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Model -->
+                                                        <div data-type="image-model" class="col-4 p-3" style="max-width:200px; display:none;">
+
+                                                            <div class="ratio-box text-center" data-type="image-ratio-box">
+                                                                <img data-type="noimage" class="btn btn-light ratio-img img-fluid p-2 image border dashed rounded" src="{% static 'img/photo-camera-gray.svg' %}" style="cursor:pointer;">
+                                                                <div data-type="loading" class="img-loading" style="color:#7e8821; display:none;"></div>
+                                                                <img data-type="preview" class="btn btn-light ratio-img img-fluid p-2 image border dashed rounded" src="" style="display: none; cursor: default;">
+                                                                <span class="badge badge-pill badge-warning w-50 main-tag" style="display:none;"><span class="bi bi-house"></span></span>
+                                                            </div>
+
+                                                            <!-- Buttons -->
+                                                            <div data-type="image-buttons" class="row justify-content-center mt-2">
+                                                                <button data-type="btn-modify" type="button" class="btn btn-outline-warning btn-sm ml-2" data-toggle="popover" data-placement="right" style="display:none;">
+                                                                    Izmeni
+                                                                </button>
+                                                            </div>
+                                                        </div>
+
+                                                        <!-- Popover operations -->
+                                                        <div data-type="popover-model" style="display:none">
+                                                        <div data-type="popover" class="ml-3 mr-3" style="min-width:150px;">
+                                                            <div class="row">
+                                                            <div class="col p-0">
+                                                                <button data-operation="main" class="btn btn-block btn-success btn-sm rounded-pill" type="button">
+                                                                    <span class="fa fa-angle-double-up mr-2"></span>Glavna
+                                                                </button>
+                                                            </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                            <div class="col-6 p-0 pr-1">
+                                                                <button data-operation="left" class="btn btn-block btn-outline-success btn-sm rounded-pill" type="button">
+                                                                    <span class="fa fa-angle-left mr-2"></span>Left
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-6 p-0 pl-1">
+                                                                <button data-operation="right" class="btn btn-block btn-outline-success btn-sm rounded-pill" type="button">
+                                                                    Right<span class="fa fa-angle-right ml-2"></span>
+                                                                </button>
+                                                            </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                            <div class="col-6 p-0 pr-1">
+                                                                <button data-operation="rotateanticlockwise" class="btn btn-block btn-outline-success btn-sm rounded-pill" type="button">
+                                                                    <span class="fas fa-undo-alt mr-2"></span>Rotate
+                                                                </button>
+                                                            </div>
+                                                            <div class="col-6 p-0 pl-1">
+                                                                <button data-operation="rotateclockwise" class="btn btn-block btn-outline-success btn-sm rounded-pill" type="button">
+                                                                    Rotate<span class="fas fa-redo-alt ml-2"></span>
+                                                                </button>
+                                                            </div>
+                                                            </div>
+                                                            <div class="row mt-2">
+                                                            <button data-operation="remove" class="btn btn-outline-danger btn-sm btn-block" type="button">
+                                                                <span class="fa fa-times mr-2"></span>Remove
+                                                            </button>
+                                                            </div>
+                                                        </div>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="form-group row">
+                                                        <div class="input-group">
+                                                        <!--Hidden file input for images-->
+                                                        <input id="files" type="file" name="files[]" data-button="" multiple="" accept="image/jpeg, image/png, image/gif," style="display:none;">
+                                                        </div>
+                                                    </div>
+
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    
+                                        <!-- Text editor -->
+                                        <div class="d-grid gap-2 pt-1">
+                                        
+                                            <div class="row g-0">
+                                                <div class="col-md">
+                                                    <div class="card card-body m-1">
+                                                        <div class="col-md mb-5">
+                                                            <textarea class="form-control" id="hiddenContent" hidden rows="5"></textarea>
+                                                            <!-- Create the editor container -->
+                                                            <div id="editor">
+                                                                
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                        <div class="text-end mt-4">
+                                            <button type="button" class="btn btn-primary" type="submit">Postavi oglas</button>
+                                        </div>
+                                    </div>
+                                </form>
+                            </div>
+
+                        </div>
+                        
+                        <div class="col-lg-4 col-md-4">
+                            
+                        </div>
+                    </div>
+
+                    
+                </div>
+            </div>
+        
+            <!-- Include the modals -->
+            {% include 'modals.html' %}
+            <!-- Include the toasts -->
+            {% include 'toast.html' %}
+        
+        </main>
+
+        <!-- Include the footer -->
+        {% include 'footer.html' %}
+        
+        <!-- Include the Quill library -->
+        <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
+
+        <!-- Initialize Quill editor -->
+        <script>
+            const quill = new Quill('#editor', {
+                theme: 'snow',
+                modules: {
+                    toolbar: [
+                        ['bold', 'italic', 'underline'], // Formatting options
+                        [{ 'list': 'bullet' }], // Bulleted list
+                    ]
+            }
+            });
+
+            // Grab references to form and hidden input
+            const form = document.querySelector('form');
+            const hiddenInput = document.querySelector('#hiddenContent');
+
+            // On form submission, set the hidden input value to the editor's HTML content
+            form.addEventListener('submit', function (e) {
+                hiddenInput.value = quill.root.innerHTML;
+            });
+
+
+            // Ready
+            $(document).ready(function () {
+
+                //Image loader var to use when you need a function from object
+                var auctionImages = null;
+
+                // Create image loader plugin
+                var imagesloader = $('[data-type=imagesloader]').imagesloader({
+                    maxFiles: 4,
+                    minSelect: 1, 
+                    imagesToLoad: auctionImages
+                });
+
+                //Form
+                $frm = $('#frm');
+
+                // Form submit
+                $frm.submit(function (e) {
+
+                    var $form = $(this);
+
+                    var files = imagesloader.data('format.imagesloader').AttachmentArray;
+
+                    var il = imagesloader.data('format.imagesloader');
+
+                    if (il.CheckValidity())
+                        alert('Upload ' + files.length + ' files');        
+
+                    e.preventDefault();
+                    e.stopPropagation();
+                });
+
+            });
+
+        </script>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
+    </body>
+</html>

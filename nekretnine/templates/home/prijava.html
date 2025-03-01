@@ -1,0 +1,32 @@
+{% load static %}
+<div class="col-md">
+    <div class="card card-body m-1">
+        <button type="button" class="btn btn-primary">
+            <i class="bi bi-google"></i> Nastavi sa Google nalogom
+          </button>
+    </div>
+</div>
+<div class="text-center">
+    <h5>ili</h5>
+</div>                                    
+<form method="POST" action="{% url 'login_user' %}">
+    {% csrf_token %}
+    <div class="col-md">
+        <div class="card card-body m-1">
+            <div class="col-md-12 p-2">
+                <input type="email" placeholder="E-mail adresa:" class="form-control" name="email" id="loginEmail" required>
+            </div>
+            <div class="col-md-12 p-2">
+                <input type="password" placeholder="Lozinka:" class="form-control" name="password" id="loginPassword" required>
+            </div>
+            <div class="col-md-12 ms-2">
+                <a href="{% url 'zaboravljena_lozinka' %}">Zaboravljena lozinka?</a>
+            </div>
+        </div>
+    </div>
+
+    <div class="col-md-12 text-end">
+        <button class="btn btn-outline-secondary" data-bs-dismiss="modal">Otkaži</button>
+        <button class="btn btn-primary" type="submit">Prijavi se</button>
+    </div>
+</form>

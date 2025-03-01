@@ -1,0 +1,347 @@
+{% load static %}
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">98.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-warning pt-1 pb-1"></div>
+    </div>
+</div>
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-info pt-1 pb-1"></div>
+    </div>
+</div>
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-info p-1 rounded">
+                        <h4 class="fw-bold mb-0">Cena na upit</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-success pt-1 pb-1"></div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-warning pt-1 pb-1"></div>
+    </div>
+</div>
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-info pt-1 pb-1"></div>
+    </div>
+</div>
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-success pt-1 pb-1"></div>
+    </div>
+</div>
+
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark-fill text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-warning pt-1 pb-1"></div>
+    </div>
+</div>
+<div class="col">
+    <div class="card shadow-sm">
+        <!--<div class="card-header bg-primary text-white text-center"></div>-->
+        <div class="card-slika">
+            <a href="{% url 'prodaja_stanova' %}">
+                <img src="{% static 'img/tojeto.jpg' %}" class="card-img" alt="tojeto.rs">
+            </a>
+            <div class="card-img">
+                <div class="position-absolute top-0 end-0 m-1">
+                    <div class="bg-warning p-1 rounded">
+                        <h4 class="fw-bold mb-0">99.000 €</h4>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="card-body">
+            <div class="d-flex justify-content-between align-items-center">
+                <div class="card-oglas">
+                    <a href="{% url 'prodaja_stanova' %}" class="text-decoration-none text-dark">
+                        <h4>Ime nekretnine</h4>
+                        <p class="card-text">Centar, Gradske lokacije, Pancevo</p>
+                    </a>
+                </div>
+                {% if user.is_authenticated %}
+                <a type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </a>
+                {% else %}
+                <button data-bs-toggle="modal" data-bs-target="#postaviOglas" type="button" class="btn btn-sm p-0 card-oglas">
+                    <i class="bi bi-bookmark text-warning fs-3"></i>
+                </button>
+                {% endif %}
+            </div>
+            <hr>
+            <div class="d-flex justify-content-between align-items-center">
+                <small class="text-muted">103m² | 4 Sobe | 2/4 sprata</small>
+                <small class="text-muted">1500€/m²</small>
+            </div>
+        </div>
+        <div class="card-footer bg-info pt-1 pb-1"></div>
+    </div>
+</div>
