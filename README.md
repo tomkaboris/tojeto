@@ -1,8 +1,5 @@
-# [www.tojeto.rs](https://www.tojeto.rs/)
-Django real estate website
-
-
-## Django Project Setup Guide
+# Django real estate website - Setup Guide
+[www.tojeto.rs](https://www.tojeto.rs/)
 
 ### Prerequisites
 - Python 3 installed
