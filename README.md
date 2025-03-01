@@ -39,6 +39,7 @@ pip install django
 #### 4. Apply Migrations
 Run database migrations to set up the database schema:
 ```bash
+python manage.py makemigrations
 python manage.py migrate
 ```
 

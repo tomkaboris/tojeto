@@ -1,6 +1,9 @@
-# Ignorisi __pycache__ u svim direktorijumima i poddirektorijumima
+# Ignorisi
 **/__pycache__/
-
-
-# Ignorisi virtualni env
 .myvenv/
+media/profile_images/*
+media/user_images/*
+nekretnine/migrations/*
+
+# Ne ignorisi
+!nekretnine/migrations/__init__.py
