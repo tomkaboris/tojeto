@@ -1,4 +1,4 @@
-# [www.tojeto.rs](https://www.tojeto.rs/)
+# [www.tojeto.rs](https://www.tojeto.rs/){:target="_blank"}
 Django real estate website
 
 
