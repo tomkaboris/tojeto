@@ -79,7 +79,11 @@
                         <div class="col-lg-12 col-md-12">
                             <div class="row">
                                 <div class="col-lg-3 col-md-3 p-2">
-                                    <img src="{% static 'img/profile_photo.jpg' %}" class="img-fluid" alt="Profilna slika">
+                                    {% if user.image_url %}
+                                    <img src="/media/profile_images/{{ user.image_url }}" class="img-fluid" alt="{{ user.first_name }} {{ user.last_name }}">
+                                    {% else %}
+                                    <img src="{% static 'img/profile_photo.jpg' %}" class="img-fluid" alt="{{ user.first_name }} {{ user.last_name }}">
+                                    {% endif %}
                                 </div>
                             
                                 <div class="col-lg-9 col-md-9">

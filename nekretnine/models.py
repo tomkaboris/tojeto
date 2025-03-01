@@ -27,6 +27,7 @@ class CustomUser(AbstractUser):
     email = models.EmailField(unique=True)  # Override to make it unique
     phone_number = models.CharField(max_length=20, blank=True, null=True)
     consent = models.BooleanField(default=False)  # Consent tracking
+    image_url = models.ImageField(upload_to='profile_images/', blank=True, null=True)  # Change this field type
 
     # Remove first_name and last_name if you prefer full_name
     full_name = models.CharField(max_length=255, blank=True, null=True)

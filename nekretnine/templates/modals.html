@@ -33,7 +33,7 @@
             <div class="modal-header bg-warning pt-1 pb-1"></div>
             <div class="modal-body">
                 <h2 class="mb-4">Promena podataka korisnika</h2>
-                <form method="POST" enctype="multipart/form-data">
+                <form action="" method="POST" enctype="multipart/form-data">
                     <!-- CSRF token in Django: {% csrf_token %} -->
                     {% csrf_token %}
                     <!-- 1. Select tip korisnika -->
@@ -95,7 +95,7 @@
                     <input 
                         class="form-control" 
                         type="file" 
-                        id="profileImage" 
+                        id="profile_image" 
                         name="profile_image"
                     >
                     </div>

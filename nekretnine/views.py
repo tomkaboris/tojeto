@@ -4,6 +4,12 @@ from django.contrib.auth import get_user_model, authenticate, login, logout
 from django.contrib import messages
 from django.shortcuts import render, redirect
 from .models import CustomUserType
+from django.conf import settings
+from django.core.files.storage import FileSystemStorage
+from django.core.files.base import ContentFile
+from PIL import Image
+from io import BytesIO
+import uuid
 
 CustomUser = get_user_model()
 
@@ -124,9 +130,32 @@ def postavi_oglas(request):
 def moji_oglasi(request):
     return render(request, 'korisnik/moji-oglasi.html')
 
+def compress_image(uploaded_file, quality=70):
+    """
+    Takes an uploaded image (from request.FILES) and compresses it 
+    (reduces quality) using Pillow, returning an in-memory file suitable 
+    for saving with Django’s FileSystemStorage or an ImageField.
+    """
+    # 1) Open the uploaded image using Pillow
+    img = Image.open(uploaded_file)
+    
+    # 2) Convert to RGB if needed (to avoid issues if it's RGBA or grayscale)
+    img = img.convert('RGB')
+    
+    # 3) Use an in-memory buffer to store the compressed image
+    image_io = BytesIO()
+    
+    # 4) Save as JPEG with a lower quality; you can adjust 'quality=70'
+    img.save(image_io, format='JPEG', quality=quality)
+    
+    # 5) Create a ContentFile, which Django can handle as a normal uploaded file
+    compressed_image = ContentFile(image_io.getvalue(), name='compressed.jpg')
+    return compressed_image
+
 @login_required
 def podesavanja(request):
     user = request.user  # The logged-in user
+    uploaded_file_url = None
 
     if request.method == 'POST':
         # Check if the form was submitted for updating user details
@@ -145,12 +174,33 @@ def podesavanja(request):
                 # Update user fields
                 user.first_name = first_name
                 user.last_name = last_name
+                user.username = email
                 user.email = email
                 user.phone_number = phone_number
                 if user_type_id:
                     user.user_type_id = user_type_id  # Assign the foreign key
                 if profile_image:
-                    user.image_url = profile_image  # Save the uploaded file (ensure proper media settings)
+                    # --- COMPRESS THE IMAGE BEFORE STORING ---
+                    compressed_image = compress_image(profile_image, quality=70)
+
+                     # 1) Location (folder) and base URL.
+                    fs = FileSystemStorage(
+                        location='media/profile_images',    # Folder in your project where images go
+                        base_url='/media/profile_images'     # URL path to access those images
+                    )
+
+                    # 2) Generate a unique filename using uuid, preserving extension.
+                    extension = profile_image.name.split('.')[-1]  # e.g. 'jpg'
+                    unique_filename = f"{uuid.uuid4()}.{extension}"
+
+                    # 3) Actually save the file.
+                    filename = fs.save(unique_filename, compressed_image)
+
+                    # 4) Build the URL to serve in templates.
+                    uploaded_file_url = fs.url(filename)
+
+                    # 5) Save the path/filename on the user (if you want to store it)
+                    user.image_url = filename  # or user.image_url = uploaded_file_url
 
                 # Save the updated user
                 user.save()
@@ -177,6 +227,7 @@ def podesavanja(request):
     context = {
         'user_types': user_types,
         'user': user,  # Pass the user object to pre-fill the form fields
+        'uploaded_file_url': uploaded_file_url,
     }
     return render(request, 'korisnik/podesavanja.html', context)
 
